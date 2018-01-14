@@ -1,0 +1,79 @@
+<script src="https://cdn.rawgit.com/zerowolfcode/zlib/c18b1f51/z.js"></script>
+<center>
+ <h3>Income</h3>
+ <button onclick="add('#i')">Add</button>
+ <table id="i">
+ <tr><th>Name</th><th>Amount</th><th>Frequency</th></tr>
+ </table>
+ <h3>Expenses</h3>
+ <button onclick="add('#e')">Add</button>
+ <table id="e">
+  <tr><th>Name</th><th>Amount</th><th>Frequency</th></tr>
+ </table>
+ <p><button onclick="cal()">Calculate</button></p>
+ <table id="cal"></table>
+</center>
+<script>
+function add(id){
+ var tr=z.c('tr'),td=z.c('td'),input=z.c('input');
+ z.a(tr,z.a(td,input));
+ var td=z.c('td'),input=z.c('input');
+ input.type='number';
+ z.a(tr,z.a(td,input));
+ var td=z.c('td'),select=z.c('select'),option=z.c('option');
+ option.textContent='Weekly';
+ option.value=0;
+ z.a(select,option);
+ var option=z.c('option');
+ option.textContent='Biweekly';
+ option.value=1;
+ z.a(select,option);
+ var option=z.c('option');
+ option.textContent='Monthly';
+ option.value=2
+ z.a(id,z.a(tr,z.a(td,z.a(select,option))));
+}
+var frqg=[[4,5],[2,3],[1,1]];
+function cal(){
+ z.html('#cal',' ');
+ var t=0,t1=0,t2,tmp,frq;
+ var il=z.z('#i')[0].children.length;
+ for(var i=1;i<il;i++){
+  tmp=Number(z.child('#i',[i,1,0]).value);
+  frq=frqg[z.child('#i',[i,2,0]).value][0];
+  t+=tmp*frq;
+ }
+ var tr=z.c('tr'),td=z.c('td');
+ z.txt(td,'Income/mo:');
+ z.a(tr,td);
+ var td=z.c('td');
+ z.txt(td,t.toFixed(2));
+ z.a('#cal',z.a(tr,td));
+ var el=z.z('#e')[0].children.length;
+ for(var i=1;i<el;i++){
+  tmp=Number(z.child('#e',[i,1,0]).value);
+  frq=frqg[z.child('#e',[i,2,0]).value][1];
+  t1+=tmp*frq;
+ }
+ var tr=z.c('tr'),td=z.c('td');
+ z.txt(td,'Expenses/mo:');
+ z.a(tr,td);
+ var td=z.c('td');
+ z.txt(td,t1.toFixed(2));
+ z.a('#cal',z.a(tr,td));
+ t2=t-t1;
+ var tr=z.c('tr'),td=z.c('td');
+ z.txt(td,'Net/mo:');
+ z.a(tr,td);
+ var td=z.c('td');
+ z.txt(td,t2.toFixed(2));
+ z.a('#cal',z.a(tr,td));
+ t=t2/5;
+ var tr=z.c('tr'),td=z.c('td');
+ z.txt(td,'Savings/wk:');
+ z.a(tr,td);
+ var td=z.c('td');
+ z.txt(td,t.toFixed(2));
+ z.a('#cal',z.a(tr,td));
+}
+</script>
