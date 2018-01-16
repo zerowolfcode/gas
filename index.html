@@ -1,4 +1,36 @@
 <script src="https://cdn.rawgit.com/zerowolfcode/zlib/c18b1f51/z.js"></script>
+<style>table,td,input{width:100%}</style>
+<button onclick="z.z('#notes')[0].style.display=z.z('#notes')[0].style.display==''?'none':''">Help</button>
+<div id="notes" style="display:none">
+Notes:
+<p>
+This calculator is meant only as a simple guide. This will NOT depict true numbers; however, the calculations are set for worst-case scenarios.
+</p>
+<p>
+For worst case calculations, it assumes (weekly) you can have withdrawals up to five times a month but only have four deposits.
+The same assumption applies to bi-weekly transfers - up to three withdrawals and minimum of two deposits.
+As for monthly,...it's just "one" month;
+</p>
+<p>
+Using the above principal, the final weekly savings calculation takes in to account the possibility of a five-week month.
+</p>
+Below is a breakdown of the calculations:
+<table>
+<tr><th colspan=2>Income</th></tr>
+<tr><td>Frequency</td><td>Monthly Multiplier</td></tr>
+<tr><td>Monthly</td><td>1</td></tr>
+<tr><td>Bi-weekly</td><td>2</td></tr>
+<tr><td>Weekly</td><td>4</td></tr>
+</table>
+<table>
+<tr><th colspan=2>Expenses</th></tr>
+<tr><td>Frequency</td><td>Monthly Multiplier</td></tr>
+<tr><td>Monthly</td><td>1</td></tr>
+<tr><td>Bi-weekly</td><td>3</td></tr>
+<tr><td>Weekly</td><td>5</td></tr>
+</table>
+*click the "Help" button again to hide this text.
+</div>
 <center>
  <h3>Income</h3>
  <button onclick="add('#i')">Add</button>
@@ -19,6 +51,7 @@ function add(id){
  z.a(tr,z.a(td,input));
  var td=z.c('td'),input=z.c('input');
  input.type='number';
+ input.style.width='7em';
  z.a(tr,z.a(td,input));
  var td=z.c('td'),select=z.c('select'),option=z.c('option');
  option.textContent='Weekly';
